@@ -11,11 +11,11 @@ import { RootState } from 'src/store/types';
 import {
     ButtonEvents,
     ButtonProperties,
+    Maturity,
     ONE_PERCENT,
     Rate,
     currencyMap,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 import { trackButtonEvent } from 'src/utils/events';
 
 export const LineChartTab = ({

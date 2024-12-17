@@ -1,5 +1,4 @@
-import { toOptions } from './assets';
-import { CurrencySymbol } from './currencyList';
+import { CurrencySymbol, toOptions } from 'src/utils';
 
 describe('toOptions', () => {
     it('should return the currencyList as a list of Option for the ComboBox', () => {

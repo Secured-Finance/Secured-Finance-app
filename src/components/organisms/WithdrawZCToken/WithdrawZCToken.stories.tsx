@@ -1,8 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import { screen, userEvent } from '@storybook/testing-library';
 import { withWalletProvider } from 'src/../.storybook/decorators';
-import { CurrencySymbol } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity } from 'src/utils';
 import { WithdrawZCToken } from './WithdrawZCToken';
 
 export default {

@@ -1,7 +1,6 @@
 import { OrderSide, WalletSource } from '@secured-finance/sf-client';
 import { useCallback } from 'react';
-import { CurrencySymbol, toCurrency } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity, toCurrency } from 'src/utils';
 import useSF from '../useSecuredFinance';
 
 export const useOrders = () => {

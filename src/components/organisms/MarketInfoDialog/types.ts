@@ -1,6 +1,5 @@
 import { CurrentMarket, DailyMarketInfo } from 'src/types';
-import { CurrencySymbol } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
+import { CurrencySymbol, LoanValue } from 'src/utils';
 
 export interface MarketInfoDialogProps {
     isOpen: boolean;

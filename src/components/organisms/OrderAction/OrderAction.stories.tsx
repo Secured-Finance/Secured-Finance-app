@@ -15,8 +15,7 @@ import {
     collateralBook80,
     dec22Fixture,
 } from 'src/stories/mocks/fixtures';
-import { CurrencySymbol } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
+import { CurrencySymbol, LoanValue } from 'src/utils';
 import { OrderAction } from '.';
 
 export default {

@@ -3,8 +3,7 @@ import { WalletSource } from '@secured-finance/sf-client/dist/secured-finance-cl
 import { dec22Fixture } from 'src/stories/mocks/fixtures';
 import { mockUseSF } from 'src/stories/mocks/useSFMock';
 import { renderHook } from 'src/test-utils';
-import { CurrencySymbol, currencyMap, toCurrency } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity, currencyMap, toCurrency } from 'src/utils';
 import { useOrders } from '.';
 
 const mockSecuredFinance = mockUseSF();

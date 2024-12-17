@@ -8,7 +8,7 @@ import {
 } from 'src/stories/mocks/fixtures';
 import { OrderType, TransactionHistoryList } from 'src/types';
 import timemachine from 'timemachine';
-import { createCurrencyMap } from './currencyList';
+import { createCurrencyMap } from 'src/utils';
 import {
     calculateAveragePrice,
     calculateFutureValue,
@@ -19,7 +19,7 @@ import {
     getMappedOrderStatus,
     getMaxAmount,
     sortOrders,
-} from './portfolio';
+} from 'src/utils';
 
 beforeAll(() => {
     timemachine.reset();

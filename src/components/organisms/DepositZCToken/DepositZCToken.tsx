@@ -22,6 +22,7 @@ import {
 import {
     AddressUtils,
     CurrencySymbol,
+    Maturity,
     ZCTokenEvents,
     convertToZcTokenName,
     convertZCTokenFromBaseAmount,
@@ -29,7 +30,6 @@ import {
     handleContractError,
     ordinaryFormat,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 import {
     ButtonEvents,
     ButtonProperties,

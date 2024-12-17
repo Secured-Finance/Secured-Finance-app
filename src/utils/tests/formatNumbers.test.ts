@@ -1,5 +1,6 @@
-import { LoanValue } from './entities';
 import {
+    LoanValue,
+    Rate,
     formatAmount,
     formatCollateralRatio,
     formatLoanValue,
@@ -10,8 +11,7 @@ import {
     formatWithCurrency,
     ordinaryFormat,
     usdFormat,
-} from './formatNumbers';
-import { Rate } from './rate';
+} from 'src/utils';
 
 describe('formatWithCurrency', () => {
     it('should format the number with the given currency and decimals', () => {

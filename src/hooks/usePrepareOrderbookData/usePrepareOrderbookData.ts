@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { OrderBookEntry, sortOrders, useOrderbook } from 'src/hooks';
-import { ZERO_BI } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
+import { LoanValue, ZERO_BI } from 'src/utils';
 
 export type AggregationFactorType = 1 | 10 | 100 | 1000;
 

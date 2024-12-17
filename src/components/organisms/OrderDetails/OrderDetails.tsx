@@ -17,6 +17,9 @@ import {
 import { CollateralBook, useMarket, useOrderFee } from 'src/hooks';
 import { OrderType } from 'src/types';
 import {
+    Amount,
+    LoanValue,
+    Maturity,
     calculateFee,
     divide,
     formatLoanValue,
@@ -24,7 +27,6 @@ import {
     multiply,
     prefixTilde,
 } from 'src/utils';
-import { Amount, LoanValue, Maturity } from 'src/utils/entities';
 
 const FeeItem = () => {
     return (

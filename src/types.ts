@@ -1,7 +1,7 @@
 import { OrderSide, WalletSource } from '@secured-finance/sf-client';
 import queries from '@secured-finance/sf-graph-client/dist/graphclients';
 import { Option } from 'src/components/atoms';
-import { LoanValue, Maturity } from 'src/utils/entities';
+import { LoanValue, Maturity } from 'src/utils';
 import { Hex } from 'viem';
 import { useAccount } from 'wagmi';
 import { CurrencySymbol } from './utils';

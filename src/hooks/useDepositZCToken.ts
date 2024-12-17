@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import useSF from 'src/hooks/useSecuredFinance';
-import { CurrencySymbol, toCurrency } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity, toCurrency } from 'src/utils';
 
 export const useDepositZCToken = (
     ccy: CurrencySymbol,

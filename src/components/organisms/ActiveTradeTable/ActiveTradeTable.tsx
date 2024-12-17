@@ -22,8 +22,10 @@ import {
     setMaturity,
 } from 'src/store/landingOrderForm';
 import {
+    Amount,
     AmountCell,
     CurrencySymbol,
+    Maturity,
     MaturityCell,
     MobileTableWrapper,
     amountColumnDefinition,
@@ -36,7 +38,6 @@ import {
     priceYieldColumnDefinition,
     tableHeaderDefinition,
 } from 'src/utils';
-import { Amount, Maturity } from 'src/utils/entities';
 
 const columnHelper = createColumnHelper<
     Position & { underMinimalCollateral?: boolean }

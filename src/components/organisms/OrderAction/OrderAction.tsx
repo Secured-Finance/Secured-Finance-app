@@ -21,8 +21,7 @@ import { useCollateralBalances } from 'src/hooks/useBalances';
 import { setWalletDialogOpen } from 'src/store/interactions';
 import { selectLandingOrderForm } from 'src/store/landingOrderForm';
 import { RootState } from 'src/store/types';
-import { ButtonEvents } from 'src/utils';
-import { Amount, LoanValue, Maturity } from 'src/utils/entities';
+import { Amount, ButtonEvents, LoanValue, Maturity } from 'src/utils';
 import { useAccount } from 'wagmi';
 
 interface OrderActionProps {

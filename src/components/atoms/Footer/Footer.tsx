@@ -2,8 +2,12 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import packageJson from 'package.json';
 import ExternalLink from 'src/assets/icons/external-link.svg';
-import { getCommitHash, getEnvShort, getUsePackageVersion } from 'src/utils';
-import { isChipVisibleForEnv } from 'src/utils/displayUtils';
+import {
+    getCommitHash,
+    getEnvShort,
+    getUsePackageVersion,
+    isChipVisibleForEnv,
+} from 'src/utils';
 
 const STATUS_PAGE_LINK = 'https://secured-finance.statuspage.io/';
 

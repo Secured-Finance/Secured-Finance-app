@@ -3,7 +3,7 @@ import {
     readMarketsFromStore,
     removeMarketFromStore,
     writeMarketInStore,
-} from './markets';
+} from 'src/utils';
 
 const marketToSave: SavedMarket = {
     market: 'USDC-DEC2024',

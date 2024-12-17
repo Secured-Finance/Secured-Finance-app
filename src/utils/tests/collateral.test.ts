@@ -1,4 +1,4 @@
-import { calculatePercentage, computeAvailableToBorrow } from './collateral';
+import { calculatePercentage, computeAvailableToBorrow } from 'src/utils';
 
 const ONE_ETH = BigInt('1000000000000000000');
 const TWO_ETH = BigInt('2000000000000000000');

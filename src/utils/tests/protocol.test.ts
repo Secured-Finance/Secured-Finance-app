@@ -6,9 +6,11 @@ import {
     usdcBytes32,
     volumePerMarket,
 } from 'src/stories/mocks/fixtures';
-import { ZERO_BI } from './collateral';
-import { createCurrencyMap } from './currencyList';
-import { computeTotalDailyVolumeInUSD } from './protocol';
+import {
+    computeTotalDailyVolumeInUSD,
+    createCurrencyMap,
+    ZERO_BI,
+} from 'src/utils';
 
 describe('computeTotalDailyVolumeInUSD', () => {
     it('should return 0 if no daily volumes', () => {

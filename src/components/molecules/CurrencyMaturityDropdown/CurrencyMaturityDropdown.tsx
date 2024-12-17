@@ -23,6 +23,7 @@ import useSF from 'src/hooks/useSecuredFinance';
 import { SavedMarket } from 'src/types';
 import {
     CurrencySymbol,
+    LoanValue,
     computeTotalDailyVolumeInUSD,
     currencyMap,
     formatLoanValue,
@@ -31,7 +32,6 @@ import {
     removeMarketFromStore,
     writeMarketInStore,
 } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
 import { useAccount } from 'wagmi';
 import { CurrencyMaturityDropdownProps, FilteredOption } from './types';
 

@@ -1,6 +1,5 @@
 import type { Option } from 'src/components/atoms';
-import { CurrencySymbol } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity } from 'src/utils';
 import { desktopColumns, mobileColumns } from './constants';
 
 export type ColumnKey = (

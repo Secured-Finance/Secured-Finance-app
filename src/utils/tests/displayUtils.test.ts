@@ -1,5 +1,4 @@
-import { isChipVisibleForEnv, isProdEnv } from './displayUtils';
-import { Environment } from './strings';
+import { Environment, isChipVisibleForEnv, isProdEnv } from 'src/utils';
 
 describe('isChipVisibleForEnv function', () => {
     const originalEnv = process.env;

@@ -1,4 +1,4 @@
-import { calculateFee } from './fee';
+import { calculateFee } from 'src/utils';
 
 const getMaturity = (days: number) => {
     return (Date.now() + days * 24 * 60 * 60 * 1000) / 1000;

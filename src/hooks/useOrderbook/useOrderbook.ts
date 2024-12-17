@@ -2,8 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { QueryKeys } from 'src/hooks/queries';
 import useSF from 'src/hooks/useSecuredFinance';
-import { CurrencySymbol, ZERO_BI, toCurrency } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
+import { CurrencySymbol, LoanValue, ZERO_BI, toCurrency } from 'src/utils';
 
 const DEFAULT_ORDERBOOK_DEPTH = 30;
 

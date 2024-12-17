@@ -21,7 +21,7 @@ import {
     defaultDatasets,
 } from 'src/components/molecules/LineChart/constants';
 import { MaturityListItem } from 'src/components/organisms';
-import { Maturity } from 'src/utils/entities';
+import { Maturity } from 'src/utils';
 
 ChartJS.register(
     LinearScale,

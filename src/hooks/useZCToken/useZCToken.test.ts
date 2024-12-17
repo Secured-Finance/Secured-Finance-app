@@ -1,7 +1,6 @@
 import { mockUseSF } from 'src/stories/mocks/useSFMock';
 import { renderHook, waitFor } from 'src/test-utils';
-import { CurrencySymbol } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity } from 'src/utils';
 import { useZCToken } from './useZCToken';
 
 const mock = mockUseSF();

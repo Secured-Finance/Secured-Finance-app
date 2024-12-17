@@ -2,8 +2,7 @@ import { composeStories } from '@storybook/react';
 import { mar23Fixture } from 'src/stories/mocks/fixtures';
 import { mockUseSF } from 'src/stories/mocks/useSFMock';
 import { fireEvent, render, screen, waitFor } from 'src/test-utils.js';
-import { CurrencySymbol } from 'src/utils';
-import { Amount } from 'src/utils/entities';
+import { Amount, CurrencySymbol } from 'src/utils';
 import * as stories from './OrderDetails.stories';
 
 const {

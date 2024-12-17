@@ -35,9 +35,11 @@ import {
 import { RootState } from 'src/store/types';
 import { OrderSideMap, OrderType, OrderTypeOptions } from 'src/types';
 import {
+    Amount,
     ButtonEvents,
     ButtonProperties,
     CurrencySymbol,
+    LoanValue,
     ZERO_BI,
     amountFormatterFromBase,
     amountFormatterToBase,
@@ -51,7 +53,6 @@ import {
     prefixTilde,
     usdFormat,
 } from 'src/utils';
-import { Amount, LoanValue } from 'src/utils/entities';
 import {
     InteractionEvents,
     InteractionProperties,

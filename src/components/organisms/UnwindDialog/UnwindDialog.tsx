@@ -21,12 +21,14 @@ import {
 import { setLastMessage } from 'src/store/lastError';
 import {
     AddressUtils,
+    Amount,
     ButtonEvents,
     ButtonProperties,
     CurrencySymbol,
+    LoanValue,
+    Maturity,
     handleContractError,
 } from 'src/utils';
-import { Amount, LoanValue, Maturity } from 'src/utils/entities';
 import { trackButtonEvent } from 'src/utils/events';
 import { useAccount } from 'wagmi';
 

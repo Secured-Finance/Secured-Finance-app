@@ -7,12 +7,12 @@ import WarningCircleIcon from 'src/assets/icons/warning-circle.svg';
 import { CurrencyIcon } from 'src/components/atoms';
 import { Tooltip } from 'src/components/molecules';
 import {
+    Maturity,
     currencyMap,
     hexToCurrencySymbol,
     isMaturityPastDays,
     isPastDate,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 
 export const TableContractCell = ({
     maturity,

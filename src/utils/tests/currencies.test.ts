@@ -1,12 +1,13 @@
 import { WalletSource as Source } from '@secured-finance/sf-client';
 import {
     COIN_GECKO_SOURCE,
+    currencyMap,
+    CurrencySymbol,
     generateWalletInformation,
     generateWalletSourceInformation,
     handlePriceSource,
     WalletSource,
-} from './currencies';
-import { currencyMap, CurrencySymbol } from './currencyList';
+} from 'src/utils';
 
 describe('currencies.generateWalletInformation', () => {
     it('should return walletInformation as AssetDisclosureProps', () => {

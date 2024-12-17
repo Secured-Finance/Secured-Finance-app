@@ -19,6 +19,7 @@ import ZcEthIcon from 'src/assets/coins/zc-eth.svg';
 import ZcFilIcon from 'src/assets/coins/zc-fil.svg';
 import ZcUsdcIcon from 'src/assets/coins/zc-usdc.svg';
 import { SvgIcon } from 'src/types';
+import { Maturity } from 'src/utils';
 import { hexToString } from 'viem';
 import { ZERO_BI } from './collateral';
 import { AUSDC } from './currencies/ausdc';
@@ -31,7 +32,6 @@ import { TFIL } from './currencies/tfil';
 import { USDC } from './currencies/usdc';
 import { WBTC } from './currencies/wbtc';
 import { WETHE } from './currencies/wethe';
-import { Maturity } from './entities';
 
 BigNumberJS.set({ EXPONENTIAL_AT: 30 }); // setting to a decent limit
 

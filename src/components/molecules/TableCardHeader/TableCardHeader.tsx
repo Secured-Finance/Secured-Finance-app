@@ -1,8 +1,12 @@
 import { OrderSide } from '@secured-finance/sf-client';
 import { getUTCMonthYear } from '@secured-finance/sf-core';
 import { Chip, ChipColors, CurrencyIcon } from 'src/components/atoms';
-import { CurrencySymbol, formatLoanValue } from 'src/utils';
-import { LoanValue, Maturity } from 'src/utils/entities';
+import {
+    CurrencySymbol,
+    LoanValue,
+    Maturity,
+    formatLoanValue,
+} from 'src/utils';
 
 export const TableCardHeader = ({
     currency,

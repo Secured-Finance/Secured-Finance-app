@@ -19,13 +19,15 @@ import {
 import { OrderType, PlaceOrderFunction } from 'src/types';
 import {
     AddressUtils,
+    Amount,
     CurrencySymbol,
+    LoanValue,
+    Maturity,
     OrderEvents,
     OrderProperties,
     formatAmount,
     handleContractError,
 } from 'src/utils';
-import { Amount, LoanValue, Maturity } from 'src/utils/entities';
 import {
     ButtonEvents,
     ButtonProperties,

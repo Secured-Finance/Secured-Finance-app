@@ -21,11 +21,11 @@ import {
 import { setCurrency, setMaturity } from 'src/store/landingOrderForm';
 import {
     CurrencySymbol,
+    LoanValue,
     formatLoanValue,
     toCurrencySymbol,
     toOptions,
 } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
 import {
     contractColumnDefinition,
     tableHeaderDefinition,

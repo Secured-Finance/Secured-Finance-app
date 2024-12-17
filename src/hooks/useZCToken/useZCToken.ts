@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { QueryKeys } from 'src/hooks/queries';
 import useSF from 'src/hooks/useSecuredFinance';
-import { CurrencySymbol, toCurrency } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity, toCurrency } from 'src/utils';
 
 export const useZCToken = (ccy: CurrencySymbol, maturity: Maturity) => {
     const securedFinance = useSF();

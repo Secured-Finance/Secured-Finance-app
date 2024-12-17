@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { Alignment } from 'src/types';
-import { formatLoanValue } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
+import { LoanValue, formatLoanValue } from 'src/utils';
 
 export const PriceYieldItem = ({
     loanValue,

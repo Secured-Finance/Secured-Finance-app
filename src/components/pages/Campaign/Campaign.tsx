@@ -10,8 +10,7 @@ import {
     useValueLockedByCurrency,
 } from 'src/hooks';
 // import { RootState } from 'src/store/types';
-import { CurrencySymbol } from 'src/utils';
-import { isProdEnv } from 'src/utils/displayUtils';
+import { CurrencySymbol, isProdEnv } from 'src/utils';
 import { Banner, CampaignStatus, DepositCard, StageBanner } from './components';
 import {
     DEV_COLLATERAL_CURRENCIES,

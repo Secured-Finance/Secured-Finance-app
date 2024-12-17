@@ -3,7 +3,7 @@ import { toBytes32 } from '@secured-finance/sf-graph-client';
 import queries from '@secured-finance/sf-graph-client/dist/graphclients';
 import { GetUserDocument } from '@secured-finance/sf-point-client';
 import { OrderType, TransactionList } from 'src/types';
-import { Maturity } from 'src/utils/entities';
+import { Maturity } from 'src/utils';
 import {
     dailyVolumes,
     dec22Fixture,

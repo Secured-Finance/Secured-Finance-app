@@ -17,7 +17,9 @@ import {
 import { RemoveOrderDialog } from 'src/components/organisms';
 import { Order, useBreakpoint } from 'src/hooks';
 import {
+    Amount,
     AmountCell,
+    Maturity,
     MobileTableWrapper,
     OrderTimeCell,
     amountColumnDefinition,
@@ -27,7 +29,6 @@ import {
     loanTypeColumnDefinition,
     priceYieldColumnDefinition,
 } from 'src/utils';
-import { Amount, Maturity } from 'src/utils/entities';
 
 export type OpenOrder = Order & { calculationDate?: number };
 

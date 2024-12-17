@@ -40,6 +40,7 @@ import {
 import useSF from 'src/hooks/useSecuredFinance';
 import {
     LOAN_MARKET_PLATFORM_GUIDE_LINK,
+    Maturity,
     checkOrderIsFilled,
     computeNetValue,
     formatOrders,
@@ -48,7 +49,6 @@ import {
     sortOrders,
     usdFormat,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 import { useAccount } from 'wagmi';
 
 export enum TableType {

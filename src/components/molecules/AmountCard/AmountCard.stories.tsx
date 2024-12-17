@@ -1,6 +1,5 @@
 import type { Meta, StoryFn } from '@storybook/react';
-import { CurrencySymbol } from 'src/utils';
-import { Amount } from 'src/utils/entities';
+import { Amount, CurrencySymbol } from 'src/utils';
 import { AmountCard } from './AmountCard';
 
 export default {

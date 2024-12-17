@@ -12,6 +12,7 @@ import { useBlockExplorerUrl, useBreakpoint, useLastPrices } from 'src/hooks';
 import { Order, OrderHistoryList } from 'src/types';
 import {
     AmountCell,
+    Maturity,
     MobileTableWrapper,
     OrderTimeCell,
     TextCell,
@@ -24,7 +25,6 @@ import {
     loanTypeColumnDefinition,
     tableHeaderDefinition,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 
 const columnHelper = createColumnHelper<Order>();
 

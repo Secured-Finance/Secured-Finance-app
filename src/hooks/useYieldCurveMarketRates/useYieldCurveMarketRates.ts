@@ -2,8 +2,7 @@ import { useSelector } from 'react-redux';
 import { MaturityListItem } from 'src/components/organisms';
 import { selectLandingOrderForm } from 'src/store/landingOrderForm';
 import { RootState } from 'src/store/types';
-import { Rate, isMaturityPastDays } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
+import { LoanValue, Rate, isMaturityPastDays } from 'src/utils';
 import { baseContracts, useLendingMarkets } from '../useLendingMarkets';
 
 export const useYieldCurveMarketRates = () => {

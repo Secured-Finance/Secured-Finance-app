@@ -1,6 +1,4 @@
-import { MAX_COVERAGE } from './collateral';
-import { divide } from './currencyList';
-import { LoanValue } from './entities';
+import { LoanValue, MAX_COVERAGE, divide } from 'src/utils';
 
 export const usdFormat = (
     number: number | bigint,

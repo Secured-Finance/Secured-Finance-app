@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import { dec22Fixture } from 'src/stories/mocks/fixtures';
-import { LoanValue } from 'src/utils/entities';
+import { LoanValue } from 'src/utils';
 import { PriceYieldItem } from './PriceYieldItem';
 
 export default {

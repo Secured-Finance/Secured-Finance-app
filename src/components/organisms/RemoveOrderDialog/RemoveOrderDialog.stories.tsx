@@ -3,8 +3,7 @@ import { withWalletProvider } from '.storybook/decorators';
 import { OrderSide } from '@secured-finance/sf-client';
 import type { Meta, StoryFn } from '@storybook/react';
 import { dec22Fixture } from 'src/stories/mocks/fixtures';
-import { CurrencySymbol } from 'src/utils';
-import { Amount } from 'src/utils/entities';
+import { Amount, CurrencySymbol } from 'src/utils';
 import { RemoveOrderDialog } from './RemoveOrderDialog';
 
 export default {

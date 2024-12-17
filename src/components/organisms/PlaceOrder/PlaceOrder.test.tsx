@@ -5,8 +5,12 @@ import { dec22Fixture, dec24Fixture } from 'src/stories/mocks/fixtures';
 import { mockUseSF } from 'src/stories/mocks/useSFMock';
 import { fireEvent, render, screen, waitFor } from 'src/test-utils.js';
 import { OrderType } from 'src/types';
-import { ButtonEvents, ButtonProperties, CurrencySymbol } from 'src/utils';
-import { Amount } from 'src/utils/entities';
+import {
+    Amount,
+    ButtonEvents,
+    ButtonProperties,
+    CurrencySymbol,
+} from 'src/utils';
 import * as stories from './PlaceOrder.stories';
 
 const { Default, Delisted, UnderMinimumCollateralThreshold } =

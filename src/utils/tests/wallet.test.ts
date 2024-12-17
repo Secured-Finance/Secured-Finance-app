@@ -2,7 +2,7 @@ import {
     readWalletFromStore,
     removeWalletFromStore,
     writeWalletInStore,
-} from './wallet';
+} from 'src/utils';
 
 describe('wallet', () => {
     const wallet = 'MetaMask';

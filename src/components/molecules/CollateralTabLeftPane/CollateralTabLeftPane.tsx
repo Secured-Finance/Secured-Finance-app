@@ -18,13 +18,13 @@ import { RootState } from 'src/store/types';
 import {
     ButtonEvents,
     CurrencySymbol,
+    Maturity,
     ZERO_BI,
     amountFormatterFromBase,
     convertFromGvUnit,
     convertToZcTokenName,
     usdFormat,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 
 export interface ZCBond {
     currency: CurrencySymbol;

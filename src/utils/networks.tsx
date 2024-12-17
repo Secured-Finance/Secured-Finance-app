@@ -3,6 +3,7 @@ import Avalanche from 'src/assets/icons/avalanche-network.svg';
 import Ethereum from 'src/assets/icons/ethereum-network.svg';
 import Filecoin from 'src/assets/icons/filecoin-network.svg';
 import Polygon from 'src/assets/icons/polygon-network.svg';
+import { isProdEnv } from 'src/utils';
 import {
     Chain,
     arbitrum,
@@ -15,7 +16,6 @@ import {
     polygonZkEvm,
     sepolia,
 } from 'viem/chains';
-import { isProdEnv } from './displayUtils';
 
 type ChainInformation = {
     chain: Chain;

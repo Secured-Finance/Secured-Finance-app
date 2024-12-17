@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import useSF from 'src/hooks/useSecuredFinance';
-import { CurrencySymbol, toCurrency } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity, toCurrency } from 'src/utils';
 import { QueryKeys } from '../queries';
 
 export const useWithdrawableZCTokenAmounts = (

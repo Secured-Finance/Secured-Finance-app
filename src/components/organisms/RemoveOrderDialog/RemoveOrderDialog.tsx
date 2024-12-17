@@ -17,8 +17,14 @@ import {
     useOrders,
 } from 'src/hooks';
 import { setLastMessage } from 'src/store/lastError';
-import { AddressUtils, ButtonEvents, ButtonProperties } from 'src/utils';
-import { Amount, LoanValue, Maturity } from 'src/utils/entities';
+import {
+    AddressUtils,
+    Amount,
+    ButtonEvents,
+    ButtonProperties,
+    LoanValue,
+    Maturity,
+} from 'src/utils';
 import { trackButtonEvent } from 'src/utils/events';
 
 enum Step {

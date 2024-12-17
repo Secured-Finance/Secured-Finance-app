@@ -1,7 +1,6 @@
 import { composeStories } from '@storybook/react';
 import { render, screen } from 'src/test-utils.js';
-import { CurrencySymbol } from 'src/utils';
-import { Amount } from 'src/utils/entities';
+import { Amount, CurrencySymbol } from 'src/utils';
 import * as stories from './AmountCard.stories';
 
 const { Default } = composeStories(stories);

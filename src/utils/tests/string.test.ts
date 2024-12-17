@@ -3,7 +3,7 @@ import {
     getEnvShort,
     getTransformMaturityOption,
     prefixTilde,
-} from './strings';
+} from 'src/utils';
 
 describe('getTransformMaturityOption', () => {
     it('should return the formatted date if the value is a number', () => {

@@ -1,6 +1,5 @@
 import { renderHook } from 'src/test-utils';
-import { ZERO_BI } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
+import { LoanValue, ZERO_BI } from 'src/utils';
 import { usePrepareOrderbookData } from './usePrepareOrderbookData';
 
 const maturity = 1675252800;

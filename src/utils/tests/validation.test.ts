@@ -1,5 +1,5 @@
 import { OrderSide } from '@secured-finance/sf-client';
-import { getAmountValidation } from './validation';
+import { getAmountValidation } from 'src/utils';
 
 describe('getAmountValidation', () => {
     it('should return false for borrow orders', () => {

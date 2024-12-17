@@ -57,6 +57,8 @@ import {
     ButtonEvents,
     ButtonProperties,
     CurrencySymbol,
+    LoanValue,
+    Maturity,
     ZERO_BI,
     checkOrderIsFilled,
     currencyMap,
@@ -69,7 +71,6 @@ import {
     toOptions,
     usdFormat,
 } from 'src/utils';
-import { LoanValue, Maturity } from 'src/utils/entities';
 import { trackButtonEvent } from 'src/utils/events';
 import { useAccount } from 'wagmi';
 

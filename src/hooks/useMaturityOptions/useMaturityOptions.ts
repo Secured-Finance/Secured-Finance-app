@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { ContractMap, LendingMarket } from 'src/hooks/useLendingMarkets';
-import { Maturity } from 'src/utils/entities';
+import { Maturity } from 'src/utils';
 
 const passThrough = () => true;
 const emptyOption = {

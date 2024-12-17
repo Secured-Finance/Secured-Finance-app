@@ -1,4 +1,4 @@
-import { Rate } from './rate';
+import { Rate } from 'src/utils';
 
 describe('Rate class', () => {
     it('should return the correct rate', () => {

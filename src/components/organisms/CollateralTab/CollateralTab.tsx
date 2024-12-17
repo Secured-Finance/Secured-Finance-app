@@ -15,11 +15,11 @@ import { CollateralBook, useBalances, useCurrencies } from 'src/hooks';
 import {
     CollateralInfo,
     CurrencySymbol,
+    Maturity,
     ZERO_BI,
     amountFormatterFromBase,
     currencyMap,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 import { useAccount } from 'wagmi';
 
 export const generateCollateralList = (

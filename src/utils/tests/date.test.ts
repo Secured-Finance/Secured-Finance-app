@@ -1,11 +1,11 @@
-import timemachine from 'timemachine';
 import {
     calculateTimeDifference,
     countdown,
     getTimestampRelativeToNow,
     isMaturityPastDays,
     isPastDate,
-} from './date';
+} from 'src/utils';
+import timemachine from 'timemachine';
 
 beforeAll(() => {
     timemachine.reset();

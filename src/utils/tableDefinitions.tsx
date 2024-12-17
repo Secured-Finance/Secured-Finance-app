@@ -17,13 +17,15 @@ import {
 } from 'src/components/atoms';
 import { TableContractCell, TableHeader } from 'src/components/molecules';
 import { Alignment, AssetPriceMap, ColorFormat } from 'src/types';
-import { ZERO_BI, formatTimestampDDMMYY } from 'src/utils';
 import {
     CurrencySymbol,
+    LoanValue,
+    Maturity,
+    ZERO_BI,
     currencyMap,
+    formatTimestampDDMMYY,
     hexToCurrencySymbol,
-} from './currencyList';
-import { LoanValue, Maturity } from './entities';
+} from 'src/utils';
 
 export const tableHeaderDefinition =
     <TData,>(title: string, titleHint?: string, align: Alignment = 'center') =>

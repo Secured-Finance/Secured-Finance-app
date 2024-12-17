@@ -8,8 +8,7 @@ import {
     maturityOptions,
 } from 'src/stories/mocks/fixtures';
 import { OrderType } from 'src/types';
-import { CurrencySymbol } from 'src/utils';
-import { Amount, LoanValue } from 'src/utils/entities';
+import { Amount, CurrencySymbol, LoanValue } from 'src/utils';
 import { PlaceOrder } from './PlaceOrder';
 
 export default {

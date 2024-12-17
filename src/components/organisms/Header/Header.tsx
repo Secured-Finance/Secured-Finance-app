@@ -27,9 +27,9 @@ import {
     getShowStablecoinAppUrl,
     getStablecoinAppUrl,
     getSupportedNetworks,
+    isProdEnv,
 } from 'src/utils';
 import { AddressUtils } from 'src/utils/address';
-import { isProdEnv } from 'src/utils/displayUtils';
 import { useAccount } from 'wagmi';
 import { DEV_LINKS, PRODUCTION_LINKS } from './constants';
 

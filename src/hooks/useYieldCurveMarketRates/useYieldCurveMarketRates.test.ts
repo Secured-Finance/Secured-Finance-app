@@ -5,8 +5,7 @@ import {
 } from 'src/stories/mocks/fixtures';
 import { mockUseSF } from 'src/stories/mocks/useSFMock';
 import { renderHook, waitFor } from 'src/test-utils';
-import { Rate } from 'src/utils';
-import { LoanValue, Maturity } from 'src/utils/entities';
+import { LoanValue, Maturity, Rate } from 'src/utils';
 import { useYieldCurveMarketRates } from './useYieldCurveMarketRates';
 
 const mock = mockUseSF();

@@ -7,6 +7,7 @@ import {
 } from 'src/stories/mocks/fixtures';
 import {
     CurrencySymbol,
+    Maturity,
     amountFormatterFromBase,
     amountFormatterToBase,
     convertFromGvUnit,
@@ -20,8 +21,7 @@ import {
     multiply,
     toCurrency,
     toCurrencySymbol,
-} from './currencyList';
-import { Maturity } from './entities';
+} from 'src/utils';
 
 const wfil = currencyMap.WFIL;
 const eth = currencyMap.ETH;

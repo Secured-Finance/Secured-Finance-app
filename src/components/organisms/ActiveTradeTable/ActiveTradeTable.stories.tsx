@@ -8,8 +8,7 @@ import {
     usdcBytes32,
     wfilBytes32,
 } from 'src/stories/mocks/fixtures';
-import { CurrencySymbol, getTimestampRelativeToNow } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity, getTimestampRelativeToNow } from 'src/utils';
 import { ActiveTradeTable } from './ActiveTradeTable';
 
 export default {

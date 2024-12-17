@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { ContractMap, LendingMarket } from 'src/hooks/useLendingMarkets';
-import { LoanValue } from 'src/utils/entities/loanValue';
+import { LoanValue } from 'src/utils';
 
 export enum RateType {
     Borrow = 0,

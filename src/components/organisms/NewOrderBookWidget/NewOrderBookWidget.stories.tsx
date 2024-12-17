@@ -1,8 +1,7 @@
 import { RESPONSIVE_PARAMETERS } from '.storybook/constants';
 import type { Meta, StoryFn } from '@storybook/react';
 import { OrderBookEntry } from 'src/hooks/useOrderbook';
-import { CurrencySymbol, ZERO_BI } from 'src/utils';
-import { LoanValue, Maturity } from 'src/utils/entities';
+import { CurrencySymbol, LoanValue, Maturity, ZERO_BI } from 'src/utils';
 import { NewOrderBookWidget } from './NewOrderBookWidget';
 
 const maturityMar23 = new Maturity(1675252800);

@@ -19,12 +19,12 @@ import {
 import {
     AddressUtils,
     CurrencySymbol,
+    Maturity,
     convertToZcTokenName,
     convertZCTokenFromBaseAmount,
     formatAmount,
     handleContractError,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 import {
     ButtonEvents,
     ButtonProperties,

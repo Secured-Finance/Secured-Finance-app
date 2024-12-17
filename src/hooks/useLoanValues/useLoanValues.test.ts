@@ -1,6 +1,6 @@
 import { dec24Fixture, maturities } from 'src/stories/mocks/fixtures';
 import { renderHook } from 'src/test-utils';
-import { LoanValue } from 'src/utils/entities/loanValue';
+import { LoanValue } from 'src/utils';
 import { RateType, useLoanValues } from './useLoanValues';
 
 describe('useLoanValues', () => {

@@ -6,12 +6,12 @@ import { ExpandIndicator, Separator } from 'src/components/atoms';
 import { useBreakpoint } from 'src/hooks';
 import { SvgIcon } from 'src/types';
 import {
+    AMOUNT_PRECISION,
     AddressUtils,
-    currencyMap,
     CurrencySymbol,
+    currencyMap,
     ordinaryFormat,
 } from 'src/utils';
-import { AMOUNT_PRECISION } from 'src/utils/entities';
 
 interface WalletSourceSelectorProps {
     optionList: WalletSourceOption[];

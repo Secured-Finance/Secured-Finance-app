@@ -8,7 +8,7 @@ import {
     maturityOptions,
 } from 'src/stories/mocks/fixtures';
 import { mockDailyVolumes, mockRecentTrades } from 'src/stories/mocks/queries';
-import { LoanValue } from 'src/utils/entities';
+import { LoanValue } from 'src/utils';
 import { AdvancedLendingTopBar } from '.';
 
 const lastTradePrice = 8000;

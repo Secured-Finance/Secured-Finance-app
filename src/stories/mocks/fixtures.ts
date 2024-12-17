@@ -19,12 +19,12 @@ import {
 } from 'src/types';
 import {
     CurrencySymbol,
+    Maturity,
     Rate,
     createCurrencyMap,
     getMappedOrderStatus,
     usdFormat,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 
 export const wfilBytes32 = toBytes32('WFIL'); // 0x5746494c0000000000000000000000000000000000000000000000000000000000
 export const ethBytes32 = toBytes32('ETH'); // 0x455448000000000000000000000000000000000000000000000000000000000

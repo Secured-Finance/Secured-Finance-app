@@ -38,8 +38,7 @@ import {
 } from 'src/store/landingOrderForm';
 import { RootState } from 'src/store/types';
 import { OrderType } from 'src/types';
-import { CurrencySymbol, ZERO_BI } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity, ZERO_BI } from 'src/utils';
 import { useAccount } from 'wagmi';
 
 export const emptyOptionList = [

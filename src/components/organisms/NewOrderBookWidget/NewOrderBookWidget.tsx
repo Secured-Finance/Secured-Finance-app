@@ -26,6 +26,7 @@ import { setOrderType, setUnitPrice } from 'src/store/landingOrderForm';
 import { ColorFormat, OrderType } from 'src/types';
 import {
     CurrencySymbol,
+    LoanValue,
     ZERO_BI,
     currencyMap,
     divide,
@@ -34,7 +35,6 @@ import {
     ordinaryFormat,
     percentFormat,
 } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
 import { ColorBar } from './ColorBar';
 import { CoreTable } from './CoreTable';
 

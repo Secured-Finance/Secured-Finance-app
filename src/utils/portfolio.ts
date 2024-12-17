@@ -5,10 +5,13 @@ import {
     Transaction,
     TransactionHistoryList,
 } from 'src/types';
-import { ZERO_BI } from './collateral';
-import { currencyMap, hexToCurrencySymbol } from './currencyList';
-import { LoanValue } from './entities';
-import { Rate } from './rate';
+import {
+    LoanValue,
+    Rate,
+    ZERO_BI,
+    currencyMap,
+    hexToCurrencySymbol,
+} from 'src/utils';
 
 export const computeWeightedAverageRate = (trades: TransactionHistoryList) => {
     if (!trades.length) {

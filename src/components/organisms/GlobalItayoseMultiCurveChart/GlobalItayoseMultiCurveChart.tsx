@@ -1,7 +1,6 @@
 import { MultiCurveChart } from 'src/components/organisms/MultiCurveChart';
 import { baseContracts, useCurrencies, useLendingMarkets } from 'src/hooks';
-import { CurrencySymbol, Rate } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
+import { CurrencySymbol, LoanValue, Rate } from 'src/utils';
 
 export const GlobalItayoseMultiCurveChart = () => {
     const curves: Record<string, Rate[]> = {};

@@ -1,7 +1,6 @@
 import { Option } from 'src/components/atoms';
 import { CurrentMarket, DailyMarketInfo } from 'src/types';
-import { CurrencySymbol } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
+import { CurrencySymbol, Maturity } from 'src/utils';
 
 export type AdvancedLendingTopBarProp = {
     selectedAsset: Option<CurrencySymbol>;

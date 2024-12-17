@@ -53,6 +53,8 @@ import {
 import { RootState } from 'src/store/types';
 import {
     CurrencySymbol,
+    LoanValue,
+    Maturity,
     ZERO_BI,
     getMappedOrderStatus,
     getTransformMaturityOption,
@@ -60,7 +62,6 @@ import {
     toOptions,
     usdFormat,
 } from 'src/utils';
-import { LoanValue, Maturity } from 'src/utils/entities';
 import { useAccount } from 'wagmi';
 
 enum TableType {

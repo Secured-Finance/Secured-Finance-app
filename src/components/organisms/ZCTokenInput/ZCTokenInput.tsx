@@ -3,12 +3,12 @@ import { InputBase, SizeDependentStylesConfig } from 'src/components/atoms';
 import { PercentageSelector } from 'src/components/molecules';
 import {
     CurrencySymbol,
+    Maturity,
     amountFormatterFromBase,
     convertZCTokenFromBaseAmount,
     convertZCTokenToBaseAmount,
     usdFormat,
 } from 'src/utils';
-import { Maturity } from 'src/utils/entities';
 
 interface ZCTokenInputProps {
     price: number;

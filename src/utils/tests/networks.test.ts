@@ -1,5 +1,5 @@
+import { getSupportedNetworks } from 'src/utils';
 import { arbitrum, arbitrumSepolia } from 'viem/chains';
-import { getSupportedNetworks } from './networks';
 
 describe('networks', () => {
     it('should have three testnet supported networks', () => {

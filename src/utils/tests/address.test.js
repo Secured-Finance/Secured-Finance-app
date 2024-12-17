@@ -1,4 +1,4 @@
-import { AddressUtils } from './address';
+import { AddressUtils } from 'src/utils';
 
 describe('AddressUtils.format', () => {
     it('should shorten the wallet address with a particular format', () => {
