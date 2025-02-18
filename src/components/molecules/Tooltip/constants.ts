@@ -13,24 +13,3 @@ export const iconStyles: { [key in TooltipMode]: string } = {
     [TooltipMode.Warning]: 'text-warning-500',
     [TooltipMode.Error]: 'text-error-500',
 };
-
-export const tooltipOptions = {
-    delay: 0,
-    closeDelay: 0,
-    motionProps: {
-        variants: {
-            exit: {
-                opacity: 0,
-                transition: {
-                    duration: 0,
-                },
-            },
-            enter: {
-                opacity: 1,
-                transition: {
-                    duration: 0,
-                },
-            },
-        },
-    },
-};

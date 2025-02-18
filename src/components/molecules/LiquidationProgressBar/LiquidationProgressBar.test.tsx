@@ -44,8 +44,19 @@ describe('LiquidationProgressBar Component', () => {
 
         await userEvent.unhover(information);
         await userEvent.hover(information);
-        const tooltip = await screen.findByRole('tooltip');
-        expect(tooltip).toBeInTheDocument();
+
+        expect(
+            screen.getByText(
+                'Liquidation threshold is the limit where your collateral will be eligible for liquidation.'
+            )
+        ).toBeInTheDocument();
+        expect(screen.getByText('You are currently')).toBeInTheDocument();
+        expect(screen.getAllByText('35%')).toHaveLength(2);
+        expect(
+            screen.getByText(
+                'under the liquidation threshold (80% of deposit balance).'
+            )
+        ).toBeInTheDocument();
     });
 
     it('should render correct color and risk status', () => {

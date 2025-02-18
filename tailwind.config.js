@@ -4,7 +4,7 @@ module.exports = {
     content: [
         './src/**/*.{ts,tsx,js,jsx}',
         './public/index.html',
-        './node_modules/@nextui-org/theme/dist/components/(tooltip|table).js',
+        './node_modules/@nextui-org/theme/dist/components/table.js',
     ],
     safelist: [
         {

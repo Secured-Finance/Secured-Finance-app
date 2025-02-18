@@ -45,8 +45,16 @@ describe('CollateralProgressBar Component', () => {
 
         await userEvent.unhover(information);
         await userEvent.hover(information);
-        const tooltip = await screen.findByRole('tooltip');
-        expect(tooltip).toBeInTheDocument();
+
+        expect(
+            screen.getByText('Your current collateral balance is')
+        ).toBeInTheDocument();
+        expect(screen.getByText('$0')).toBeInTheDocument();
+        expect(
+            screen.getByText(
+                '. Deposit collateral assets to borrow on Secured Finance.'
+            )
+        ).toBeInTheDocument();
     });
 
     it('should render collateral deposited zero coverage CollateralProgressBar', async () => {
@@ -68,8 +76,19 @@ describe('CollateralProgressBar Component', () => {
 
         await userEvent.unhover(information);
         await userEvent.hover(information);
-        const tooltip = await screen.findByRole('tooltip');
-        expect(tooltip).toBeInTheDocument();
+
+        expect(
+            screen.getByText('Your current borrow limit is at')
+        ).toBeInTheDocument();
+        expect(screen.getAllByText('$80.00')).toHaveLength(2);
+        expect(
+            screen.getByText('which is 80% of your $100.00 collateral deposit.')
+        ).toBeInTheDocument();
+        expect(
+            screen.getByText(
+                'Increasing collateral deposit will increase your borrow limit by 80% of its value.'
+            )
+        ).toBeInTheDocument();
     });
 
     it('should render collateral deposited with coverage CollateralProgressBar', async () => {
@@ -91,7 +110,18 @@ describe('CollateralProgressBar Component', () => {
 
         await userEvent.unhover(information);
         await userEvent.hover(information);
-        const tooltip = await screen.findByRole('tooltip');
-        expect(tooltip).toBeInTheDocument();
+
+        expect(
+            screen.getByText('Your current borrow limit is at')
+        ).toBeInTheDocument();
+        expect(screen.getAllByText('$43.00')).toHaveLength(2);
+        expect(
+            screen.getByText('which is 43% of your $100.00 collateral deposit.')
+        ).toBeInTheDocument();
+        expect(
+            screen.getByText(
+                'Increasing collateral deposit will increase your borrow limit by 80% of its value.'
+            )
+        ).toBeInTheDocument();
     });
 });
