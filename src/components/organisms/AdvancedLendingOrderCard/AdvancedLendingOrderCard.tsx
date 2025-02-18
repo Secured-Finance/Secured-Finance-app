@@ -21,6 +21,7 @@ import {
     useBreakpoint,
     useLastPrices,
     useMarket,
+    usePositions,
 } from 'src/hooks';
 import { useOrderbook } from 'src/hooks/useOrderbook';
 import {
@@ -62,8 +63,8 @@ import { useAccount } from 'wagmi';
 const getOrderSideText = (
     side: (typeof OrderSideMap)[OrderSide.LEND | OrderSide.BORROW]
 ) => {
-    if (side === 'Lend') return 'Buy / Lend';
-    return 'Sell / Borrow';
+    if (side === 'Lend') return 'Lend/Buy';
+    return 'Borrow/Sell';
 };
 
 export function AdvancedLendingOrderCard({
@@ -101,6 +102,30 @@ export function AdvancedLendingOrderCard({
     );
 
     const { address, isConnected } = useAccount();
+
+    const { data: fullPositions } = usePositions(address, [currency]);
+
+    const currentPosition = useMemo(() => {
+        if (!fullPositions?.positions) return null;
+        const position = fullPositions.positions.filter(
+            pos => +pos.maturity === maturity
+        );
+
+        if (!position?.length) return null;
+
+        const orderSide =
+            position[0].futureValue > 0 ? OrderSide.LEND : OrderSide.BORROW;
+
+        if (orderSide !== side) return null;
+
+        // console.log('position', position);
+
+        return ordinaryFormat(
+            amountFormatterFromBase[currency](position[0].amount),
+            currencyMap[currency].roundingDecimal,
+            currencyMap[currency].roundingDecimal
+        );
+    }, [fullPositions, maturity, side, currency]);
 
     const [sliderValue, setSliderValue] = useState(0.0);
 
@@ -238,6 +263,7 @@ export function AdvancedLendingOrderCard({
         dispatch(setAmount(v === '' ? '' : inputValue.toString()));
         const available =
             side === OrderSide.BORROW ? availableToBorrow : balanceToLend;
+
         if (available > 0) {
             const percentage = (inputValue * BigInt(100)) / available;
             setSliderValue(
@@ -266,20 +292,24 @@ export function AdvancedLendingOrderCard({
         const inputAmount = amount > available ? available : amount;
 
         dispatch(setAmount(inputAmount.toString()));
-        const percentage = (inputAmount * BigInt(100)) / available;
-        available
-            ? setSliderValue(
-                  Number(percentage > BigInt(100) ? BigInt(100) : percentage)
-              )
-            : setSliderValue(0);
+
+        if (available) {
+            const percentage = (inputAmount * BigInt(100)) / available;
+            setSliderValue(
+                Number(percentage > BigInt(100) ? BigInt(100) : percentage)
+            );
+        } else {
+            setSliderValue(0);
+        }
     };
 
     const isInvalidBondPrice = unitPrice === 0 && orderType === OrderType.LIMIT;
+    const isLendingSide = side === OrderSide.LEND;
 
     const showPreOrderError =
         isItayose &&
-        ((preOrderPosition === 'borrow' && side === OrderSide.LEND) ||
-            (preOrderPosition === 'lend' && side === OrderSide.BORROW));
+        ((preOrderPosition === 'borrow' && isLendingSide) ||
+            (preOrderPosition === 'lend' && !isLendingSide));
 
     const shouldDisableActionButton =
         getAmountValidation(amount, balanceToLend, side) ||
@@ -320,6 +350,25 @@ export function AdvancedLendingOrderCard({
         text: getOrderSideText(option),
         variant: TabVariant[option],
     }));
+
+    const calculateFutureValue = useCallback(
+        (amount: bigint, unitPrice: number) => {
+            if (unitPrice === 0) {
+                return 0;
+            }
+            return divide(
+                multiply(
+                    amountFormatterFromBase[currency](amount),
+                    100,
+                    currencyMap[currency].roundingDecimal
+                ),
+                unitPrice,
+                currencyMap[currency].roundingDecimal
+            );
+        },
+        [currency]
+    );
+
     return (
         <div className='h-full rounded-b-xl border-white-10 bg-neutral-900 pb-7 laptop:border'>
             <div className='h-11 border-b border-neutral-600 laptop:h-[60px]'>
@@ -329,7 +378,7 @@ export function AdvancedLendingOrderCard({
                     handleClick={option => {
                         dispatch(
                             setSide(
-                                option === 'Sell / Borrow'
+                                option === 'Borrow/Sell'
                                     ? OrderSide.BORROW
                                     : OrderSide.LEND
                             )
@@ -345,8 +394,8 @@ export function AdvancedLendingOrderCard({
                 />
             </div>
 
-            <div className='grid w-full grid-cols-12 gap-5  px-4 pb-8 pt-4 laptop:gap-0 laptop:pb-4 laptop:pt-5'>
-                <div className='col-span-7 flex flex-col justify-start gap-2 laptop:col-span-12 laptop:gap-4'>
+            <div className='grid w-full grid-cols-12 gap-5 px-4 pb-8 pt-2.5 laptop:gap-0 laptop:pb-4 laptop:pt-2'>
+                <div className='col-span-7 flex flex-col justify-start gap-2.5 laptop:col-span-12 laptop:gap-2'>
                     {!isItayose && (
                         <SubtabGroup
                             options={OrderTypeOptions}
@@ -362,25 +411,41 @@ export function AdvancedLendingOrderCard({
                             }}
                         />
                     )}
-                    {side === OrderSide.LEND && (
-                        <div className='space-y-1'>
-                            <WalletSourceSelector
-                                optionList={walletSourceList}
-                                selected={selectedWalletSource}
-                                account={address ?? ''}
-                                onChange={handleWalletSourceChange}
-                            />
-
-                            <ErrorInfo
-                                showError={getAmountValidation(
-                                    amount,
-                                    balanceToLend,
-                                    side
-                                )}
-                                errorMessage='Insufficient amount in source'
-                            />
-                        </div>
-                    )}
+                    <div className='flex flex-col gap-1'>
+                        {isLendingSide && (
+                            <div className='laptop:typography-desktop-body-4 flex justify-between px-2 text-xs leading-4 text-neutral-400 laptop:order-1'>
+                                <span>
+                                    {isTablet
+                                        ? 'Available to Trade'
+                                        : 'Lending Source'}
+                                </span>
+                                <span>Available</span>
+                            </div>
+                        )}
+                        <OrderDisplayBox
+                            field='Current Position'
+                            value={`${currentPosition ?? '0'} ${currency}`}
+                            className='laptop:order-3'
+                        />
+                        {isLendingSide && (
+                            <div className='mt-1.5 space-y-1 laptop:order-2 laptop:mt-0'>
+                                <WalletSourceSelector
+                                    optionList={walletSourceList}
+                                    selected={selectedWalletSource}
+                                    account={address ?? ''}
+                                    onChange={handleWalletSourceChange}
+                                />
+                                <ErrorInfo
+                                    showError={getAmountValidation(
+                                        amount,
+                                        balanceToLend,
+                                        side
+                                    )}
+                                    errorMessage='Insufficient amount in source'
+                                />
+                            </div>
+                        )}
+                    </div>
                     <div className='flex flex-col gap-3 laptop:gap-2.5'>
                         <OrderInputBox
                             field='Bond Price'
@@ -410,6 +475,24 @@ export function AdvancedLendingOrderCard({
                             errorMessage='Invalid bond price'
                             showError={isInvalidBondPrice}
                         />
+                        <OrderInputBox
+                            field='Size'
+                            unit={currency}
+                            initialValue={
+                                amountExists
+                                    ? amountFormatterFromBase[currency](
+                                          amount
+                                      ).toString()
+                                    : ''
+                            }
+                            onValueChange={v =>
+                                handleInputChange((v as string) ?? '')
+                            }
+                            disabled={!isConnected}
+                            bgClassName={
+                                !isConnected ? 'bg-neutral-700' : undefined
+                            }
+                        />
                         {isMarketOrderType && (
                             <div className='mx-2 laptop:mx-10px'>
                                 <OrderDisplayBox
@@ -419,10 +502,11 @@ export function AdvancedLendingOrderCard({
                                 />
                             </div>
                         )}
-                        <div className='mx-2 mb-1 laptop:mx-10px laptop:mb-0'>
-                            <OrderDisplayBox
-                                field='Fixed Rate'
-                                value={formatLoanValue(loanValue, 'rate')}
+                        <div className='mx-10px'>
+                            <Slider
+                                onChange={handleSliderChange}
+                                value={sliderValue}
+                                disabled={!isConnected}
                             />
                         </div>
                     </div>
@@ -442,67 +526,51 @@ export function AdvancedLendingOrderCard({
                             </div>
                         </div>
                     )}
-                    <OrderInputBox
-                        field='Amount'
-                        unit={currency}
-                        initialValue={
-                            amountExists
-                                ? amountFormatterFromBase[currency](
-                                      amount
-                                  ).toString()
-                                : ''
-                        }
-                        onValueChange={v =>
-                            handleInputChange((v as string) ?? '')
-                        }
-                        disabled={!isConnected}
-                        bgClassName={
-                            !isConnected ? 'bg-neutral-700' : undefined
-                        }
-                    />
-                    <div className='mx-10px'>
-                        <Slider
-                            onChange={handleSliderChange}
-                            value={sliderValue}
-                            disabled={!isConnected}
-                        />
-                    </div>
-                    <div className='mx-2 flex flex-col gap-2 laptop:mx-10px'>
+                    <div className='mb-2.5 flex flex-col gap-1 laptop:mb-0'>
                         <OrderDisplayBox
-                            field='Est. Present Value'
-                            value={usdFormat(orderAmount?.toUSD(price) ?? 0, 2)}
+                            field='Fixed Rate (APR)'
+                            value={formatLoanValue(loanValue, 'rate')}
                         />
                         <OrderDisplayBox
-                            field='Future Value'
+                            field='Present Value (PV)'
+                            value={`${ordinaryFormat(
+                                orderAmount?.value ?? 0,
+                                0,
+                                currencyMap[currency].roundingDecimal
+                            )} ${currency} (${usdFormat(
+                                orderAmount?.toUSD(price) ?? 0,
+                                2
+                            )})`}
+                        />
+                        <OrderDisplayBox
+                            field='Future Value (FV)'
                             value={
                                 unitPriceValue &&
                                 unitPriceValue !== '' &&
                                 unitPriceValue !== '0'
-                                    ? divide(
-                                          multiply(
-                                              amountFormatterFromBase[currency](
-                                                  amount
-                                              ),
-                                              100,
-                                              currencyMap[currency]
-                                                  .roundingDecimal
-                                          ),
-                                          Number(unitPriceValue),
-                                          currencyMap[currency].roundingDecimal
-                                      )
-                                    : 0
+                                    ? (() => {
+                                          const fv = calculateFutureValue(
+                                              amount,
+                                              Number(unitPriceValue)
+                                          );
+                                          const totalValue = price
+                                              ? fv * price
+                                              : 0;
+                                          return `${fv} ${currency} (${usdFormat(
+                                              totalValue,
+                                              2
+                                          )})`;
+                                      })()
+                                    : `0 ${currency} ($0.00)`
                             }
-                            informationText='Future Value is the expected return value of the contract at time of maturity.'
                         />
                     </div>
-
                     <OrderAction
                         loanValue={loanValue}
                         collateralBook={collateralBook}
                         validation={shouldDisableActionButton}
                         isCurrencyDelisted={delistedCurrencySet.has(currency)}
                     />
-
                     <ErrorInfo
                         errorMessage='Simultaneous borrow and lend orders are not allowed during the pre-open market period.'
                         align='left'

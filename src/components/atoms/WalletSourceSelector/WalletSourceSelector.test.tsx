@@ -27,14 +27,12 @@ const walletSourceList: WalletSourceOption[] = [
 describe('WalletSourceSelector component', () => {
     it('should render WalletSourceSelector', () => {
         render(<Default />);
-        expect(screen.getByText('Available')).toBeInTheDocument();
         expect(screen.getByText('0xb98b...fd6d')).toBeInTheDocument();
         expect(screen.getByText('1,000')).toBeInTheDocument();
     });
 
     it('should render disabled WalletSourceSelector when wallet is disconnected', () => {
         render(<NotConnectedToWallet />);
-        expect(screen.getByText('Available')).toBeInTheDocument();
         expect(screen.getByText('Connect')).toBeInTheDocument();
         expect(screen.getByText('--')).toBeInTheDocument();
     });

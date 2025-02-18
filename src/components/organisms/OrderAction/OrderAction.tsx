@@ -12,6 +12,7 @@ import {
     CollateralBook,
     MarketPhase,
     useBorrowableAmount,
+    useBreakpoint,
     useCollateralCurrencies,
     useLastPrices,
     useMarketPhase,
@@ -40,6 +41,7 @@ export const OrderAction = ({
     validation,
     isCurrencyDelisted,
 }: OrderActionProps) => {
+    const isTablet = useBreakpoint('laptop');
     const { address, isConnected } = useAccount();
     const dispatch = useDispatch();
     const { placeOrder, placePreOrder } = useOrders();
@@ -99,6 +101,8 @@ export const OrderAction = ({
         (marketPhase !== MarketPhase.PRE_ORDER &&
             marketPhase !== MarketPhase.OPEN);
 
+    const buttonSize = isTablet ? ButtonSizes.md : ButtonSizes.lg;
+
     return (
         <>
             {isConnected &&
@@ -111,9 +115,8 @@ export const OrderAction = ({
                             track(ButtonEvents.PLACE_ORDER_BUTTON);
                         }}
                         data-testid='place-order-button'
-                        mobileText='Order'
                         aria-label={getButtonText()}
-                        size={ButtonSizes.lg}
+                        size={buttonSize}
                     >
                         {getButtonText()}
                     </Button>
@@ -126,7 +129,7 @@ export const OrderAction = ({
                             track(ButtonEvents.DEPOSIT_COLLATERAL_BUTTON);
                         }}
                         data-testid='deposit-collateral-button'
-                        size={ButtonSizes.lg}
+                        size={buttonSize}
                     >
                         Deposit collateral
                     </Button>
@@ -135,7 +138,7 @@ export const OrderAction = ({
                 <Button
                     fullWidth
                     onClick={() => dispatch(setWalletDialogOpen(true))}
-                    size={ButtonSizes.lg}
+                    size={buttonSize}
                 >
                     Connect Wallet
                 </Button>

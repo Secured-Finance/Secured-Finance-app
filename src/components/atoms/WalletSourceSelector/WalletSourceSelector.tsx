@@ -3,7 +3,6 @@ import { WalletSource } from '@secured-finance/sf-client';
 import clsx from 'clsx';
 import { Fragment, useMemo } from 'react';
 import { ExpandIndicator, Separator } from 'src/components/atoms';
-import { useBreakpoint } from 'src/hooks';
 import { SvgIcon } from 'src/types';
 import {
     AddressUtils,
@@ -53,7 +52,6 @@ export const WalletSourceSelector = ({
     account,
     onChange,
 }: WalletSourceSelectorProps) => {
-    const isLaptop = useBreakpoint('desktop');
     const list = useMemo(
         () =>
             optionList.filter(
@@ -80,28 +78,34 @@ export const WalletSourceSelector = ({
                         <>
                             <div className='relative h-full rounded-lg ring-inset ring-starBlue focus-within:ring-2'>
                                 <Listbox.Button
-                                    className='flex w-full cursor-text flex-row items-center justify-between rounded-lg bg-black-20 py-2 pl-3 pr-4 laptop:pl-2'
+                                    className='flex w-full cursor-text flex-row items-center justify-between rounded-lg bg-tabBg py-2 pl-3 pr-4 laptop:pl-2'
                                     data-testid='wallet-source-selector-button'
                                 >
                                     <div
-                                        className={`flex h-7 w-auto flex-row items-center justify-between gap-1 rounded-lg bg-white-5 px-2 laptop:h-10 desktop:w-[156px] ${
-                                            account
-                                                ? 'cursor-pointer'
-                                                : 'cursor-default'
-                                        }`}
+                                        className={clsx(
+                                            'flex h-7 w-auto flex-row items-center justify-between gap-1 rounded border border-neutral-700 bg-neutral-800 pl-2 pr-1 laptop:h-8 desktop:w-[156px]',
+                                            {
+                                                'cursor-pointer': account,
+                                                'cursor-default': !account,
+                                            }
+                                        )}
                                     >
-                                        <div className='flex flex-row items-center gap-1 laptop:gap-2'>
+                                        <div className='flex flex-row items-center gap-1'>
                                             {account && (
                                                 <span>
-                                                    <selectedOption.iconSVG className='h-3.5 w-3.5 desktop:h-5 desktop:w-5' />
+                                                    <selectedOption.iconSVG className='h-3.5 w-3.5 laptop:h-4 desktop:w-4' />
                                                 </span>
                                             )}
                                             <span
-                                                className={`desktop:typography-caption-2 text-[11px] leading-4 ${
-                                                    account
-                                                        ? 'text-grayScale'
-                                                        : 'text-grayScale/50'
-                                                }`}
+                                                className={clsx(
+                                                    'desktop:typography-caption-2 text-xs leading-4',
+                                                    {
+                                                        'text-grayScale':
+                                                            account,
+                                                        'text-grayScale/50':
+                                                            !account,
+                                                    }
+                                                )}
                                             >
                                                 {account
                                                     ? formatSource(
@@ -118,10 +122,7 @@ export const WalletSourceSelector = ({
                                             }
                                         />
                                     </div>
-                                    <div className='flex w-fit max-w-[200px] flex-col gap-0.5 text-right text-xs leading-5 text-planetaryPurple laptop:gap-[1px] laptop:text-sm laptop:leading-normal'>
-                                        <span className='block gap-[1px] whitespace-nowrap text-right text-[11px] leading-4 text-slateGray laptop:text-xs laptop:leading-tight'>
-                                            {isLaptop ? 'Avl.' : 'Available'}
-                                        </span>
+                                    <div className='flex w-fit max-w-[200px] flex-col gap-0.5 text-right text-xs leading-5 text-neutral-50 laptop:gap-[1px] laptop:text-sm laptop:leading-normal'>
                                         {account
                                             ? formatOption(
                                                   selectedOption.available,

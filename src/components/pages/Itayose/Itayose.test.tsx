@@ -53,7 +53,7 @@ describe('Itayose Component', () => {
             })
         );
         expect(store.getState().landingOrderForm.amount).toEqual('0');
-        const ele = await screen.findByRole('textbox', { name: 'Amount' });
+        const ele = await screen.findByRole('textbox', { name: 'Size' });
         await waitFor(() => {
             fireEvent.change(ele, {
                 target: { value: '1' },
@@ -66,7 +66,7 @@ describe('Itayose Component', () => {
 
         await waitFor(() => {
             expect(store.getState().landingOrderForm.amount).toEqual('1');
-            expect(screen.getByRole('textbox', { name: 'Amount' })).toHaveValue(
+            expect(screen.getByRole('textbox', { name: 'Size' })).toHaveValue(
                 '1'
             );
         });

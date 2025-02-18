@@ -84,7 +84,7 @@ export enum OrderType {
     LIMIT = 'Limit',
 }
 
-export const OrderTypeOptions = [OrderType.LIMIT, OrderType.MARKET];
+export const OrderTypeOptions = [OrderType.MARKET, OrderType.LIMIT];
 
 export const OrderSideMap = Object.freeze({
     [OrderSide.LEND]: 'Lend',

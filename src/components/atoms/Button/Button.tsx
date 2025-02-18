@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { useBreakpoint } from 'src/hooks';
 import { SvgIcon } from 'src/types';
 import { sizeStyle, textStyle, variantStyle } from './constants';
 import { ButtonSizes, ButtonVariants } from './types';
@@ -12,7 +11,6 @@ export const Button = ({
     StartIcon,
     EndIcon,
     variant = ButtonVariants.primary,
-    mobileText,
     ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> &
     React.AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -20,12 +18,10 @@ export const Button = ({
         href?: string;
         size?: ButtonSizes;
         variant?: ButtonVariants;
-        mobileText?: string;
     } & {
         StartIcon?: SvgIcon;
         EndIcon?: SvgIcon;
     }) => {
-    const isMobile = useBreakpoint('tablet');
     const Tag = href ? 'a' : 'button';
     const tagProps = href
         ? {
@@ -36,7 +32,6 @@ export const Button = ({
         : props;
 
     const label = typeof children === 'string' ? children : 'Button';
-    const text = isMobile && mobileText ? mobileText : children;
 
     return (
         <Tag
@@ -57,13 +52,14 @@ export const Button = ({
                 }
             )}
         >
-            {/* TODO: handle height of start and end icon wrt size prop value */}
             {StartIcon && (
                 <span className='mr-3'>
                     <StartIcon className='h-4 text-white' role='img' />
                 </span>
             )}
-            <p className={clsx('whitespace-nowrap', textStyle[size])}>{text}</p>
+            <p className={clsx('whitespace-nowrap', textStyle[size])}>
+                {children}
+            </p>
             {EndIcon && (
                 <span className='ml-3'>
                     <EndIcon className='h-4 text-white' role='img' />

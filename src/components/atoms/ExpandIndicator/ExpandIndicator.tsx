@@ -17,7 +17,7 @@ export const ExpandIndicator = ({
         <ChevronDownIcon
             className={clsx({
                 'rotate-180': expanded,
-                'h-3.5 w-3.5 text-white laptop:h-5 laptop:w-5':
+                'h-3.5 w-3.5 text-white laptop:h-4 laptop:w-4':
                     variant === 'solid',
                 'h-3 w-3 text-white opacity-50': variant === 'opaque',
             })}

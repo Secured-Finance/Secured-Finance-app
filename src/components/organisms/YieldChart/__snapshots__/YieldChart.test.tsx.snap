@@ -105,7 +105,7 @@ exports[`YieldChart Component should render YieldChart 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="h-3.5 w-3.5 text-white laptop:h-5 laptop:w-5"
+          class="h-3.5 w-3.5 text-white laptop:h-4 laptop:w-4"
           data-slot="icon"
           data-testid="chevron-down-icon"
           fill="currentColor"

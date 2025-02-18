@@ -200,13 +200,13 @@ describe('Landing Component', () => {
         expect(screen.getByRole('slider')).toHaveValue('0');
         fireEvent.click(screen.getByRole('radio', { name: 'Lend' }));
         await waitFor(() =>
-            fireEvent.input(screen.getByRole('textbox', { name: 'Amount' }), {
+            fireEvent.input(screen.getByRole('textbox', { name: 'Size' }), {
                 target: { value: '1000' },
             })
         );
         expect(screen.getByRole('slider')).toHaveValue('10');
         await waitFor(() =>
-            fireEvent.input(screen.getByRole('textbox', { name: 'Amount' }), {
+            fireEvent.input(screen.getByRole('textbox', { name: 'Size' }), {
                 target: { value: '5000' },
             })
         );
@@ -225,7 +225,7 @@ describe('Landing Component', () => {
         expect(await screen.findByText('DEC2022')).toBeInTheDocument();
         expect(screen.getByRole('slider')).toHaveValue('0');
         waitFor(() => {
-            fireEvent.change(screen.getByRole('textbox', { name: 'Amount' }), {
+            fireEvent.change(screen.getByRole('textbox', { name: 'Size' }), {
                 target: { value: '100' },
             });
         });

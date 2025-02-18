@@ -30,7 +30,7 @@ describe.skip('Advanced Lending Component', () => {
         );
         expect(store.getState().landingOrderForm.amount).toEqual('');
         await waitFor(() =>
-            fireEvent.input(screen.getByRole('textbox', { name: 'Amount' }), {
+            fireEvent.input(screen.getByRole('textbox', { name: 'Size' }), {
                 target: { value: '1' },
             })
         );
@@ -43,7 +43,7 @@ describe.skip('Advanced Lending Component', () => {
         });
         await waitFor(() => {
             expect(store.getState().landingOrderForm.amount).toEqual('1');
-            expect(screen.getByRole('textbox', { name: 'Amount' })).toHaveValue(
+            expect(screen.getByRole('textbox', { name: 'Size' })).toHaveValue(
                 '1'
             );
         });
@@ -58,7 +58,7 @@ describe.skip('Advanced Lending Component', () => {
         );
         expect(store.getState().landingOrderForm.amount).toEqual('');
         await waitFor(() =>
-            fireEvent.input(screen.getByRole('textbox', { name: 'Amount' }), {
+            fireEvent.input(screen.getByRole('textbox', { name: 'Size' }), {
                 target: { value: '1' },
             })
         );
@@ -70,7 +70,7 @@ describe.skip('Advanced Lending Component', () => {
         });
         await waitFor(() => {
             expect(store.getState().landingOrderForm.amount).toEqual('1');
-            expect(screen.getByRole('textbox', { name: 'Amount' })).toHaveValue(
+            expect(screen.getByRole('textbox', { name: 'Size' })).toHaveValue(
                 '1'
             );
         });

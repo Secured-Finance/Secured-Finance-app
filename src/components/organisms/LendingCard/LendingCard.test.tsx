@@ -191,10 +191,9 @@ describe('LendingCard Component', () => {
         await waitFor(() => render(<Default />, { preloadedState }));
         const lendTab = screen.getByText('Lend');
         fireEvent.click(lendTab);
-        await waitFor(() =>
-            expect(screen.getByText('Available')).toBeInTheDocument()
-        );
-        expect(screen.getByText('10,000')).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByText('10,000')).toBeInTheDocument();
+        });
 
         const walletSourceButton = screen.getByTestId(
             'wallet-source-selector-button'
@@ -225,14 +224,13 @@ describe('LendingCard Component', () => {
         const lendTab = screen.getByText('Lend');
         fireEvent.click(lendTab);
 
-        await waitFor(() =>
-            expect(screen.getByText('Available')).toBeInTheDocument()
-        );
         const input = screen.getByRole('textbox');
         fireEvent.change(input, { target: { value: '200' } });
 
         const button = screen.getByTestId('place-order-button');
-        expect(button).not.toBeDisabled();
+        await waitFor(() => {
+            expect(button).not.toBeDisabled();
+        });
         expect(
             screen.queryByText('Insufficient amount in source')
         ).not.toBeInTheDocument();
