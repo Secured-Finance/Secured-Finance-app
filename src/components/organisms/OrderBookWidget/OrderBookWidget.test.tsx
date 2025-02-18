@@ -1,11 +1,11 @@
 import { composeStories } from '@storybook/react';
 import { fireEvent, render, screen, within } from 'src/test-utils.js';
 import { OrderType } from 'src/types';
-import * as stories from './NewOrderBookWidget.stories';
+import * as stories from './OrderBookWidget.stories';
 
 const { Default, Loading, Bitcoin, Itayose } = composeStories(stories);
 
-describe.skip('NewOrderBookWidget Component', () => {
+describe.skip('OrderBookWidget Component', () => {
     it('should render two tables', () => {
         render(<Default />);
         expect(screen.getByTestId('buyOrders')).toBeInTheDocument();

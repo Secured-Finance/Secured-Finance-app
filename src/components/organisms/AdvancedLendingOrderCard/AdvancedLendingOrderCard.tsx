@@ -13,7 +13,7 @@ import {
     WalletSourceSelector,
 } from 'src/components/atoms';
 import { SubtabGroup, TabGroup } from 'src/components/molecules';
-import { NewOrderBookWidget, OrderAction } from 'src/components/organisms';
+import { OrderAction, OrderBookWidget } from 'src/components/organisms';
 import {
     CollateralBook,
     useBalances,
@@ -511,7 +511,7 @@ export function AdvancedLendingOrderCard({
                 </div>
                 <div className='col-span-5 laptop:hidden'>
                     {isTablet && (
-                        <NewOrderBookWidget
+                        <OrderBookWidget
                             orderbook={orderBook}
                             currency={currency}
                             marketPrice={currentMarket?.value}

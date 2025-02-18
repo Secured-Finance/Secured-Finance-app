@@ -19,7 +19,7 @@ import {
     HistoricalWidget,
     LineChartTab,
     MyTransactionsTable,
-    NewOrderBookWidget,
+    OrderBookWidget,
     OrderHistoryTable,
     OrderTable,
 } from 'src/components/organisms';
@@ -482,7 +482,7 @@ export const AdvancedLending = ({
 
                     <div className='hidden laptop:block laptop:w-[272px] desktop:w-[300px]'>
                         {!isTablet && (
-                            <NewOrderBookWidget
+                            <OrderBookWidget
                                 orderbook={orderBook}
                                 currency={currency}
                                 marketPrice={currentMarket?.value}

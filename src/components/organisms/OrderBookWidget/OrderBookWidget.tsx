@@ -198,7 +198,7 @@ const reducer = (
     }
 };
 
-export const NewOrderBookWidget = ({
+export const OrderBookWidget = ({
     orderbook,
     currency,
     maxLendUnitPrice,
@@ -496,6 +496,7 @@ export const NewOrderBookWidget = ({
                                             : false,
                                     hideColumnIds: isTablet ? ['apr'] : [],
                                     hoverDirection: 'up',
+                                    flashRowClass: 'bg-error-300/25',
                                 }}
                             />
                         </div>
@@ -548,6 +549,7 @@ export const NewOrderBookWidget = ({
                                             : false,
                                     hideColumnIds: isTablet ? ['apr'] : [],
                                     hoverDirection: 'down',
+                                    flashRowClass: 'bg-secondary-300/25',
                                 }}
                             />
                         </div>

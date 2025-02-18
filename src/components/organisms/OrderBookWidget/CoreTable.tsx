@@ -4,11 +4,13 @@ import {
     flexRender,
     getCoreRowModel,
     getSortedRowModel,
+    Row,
     SortingState,
     useReactTable,
 } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { OrderBookEntry } from 'src/hooks';
 
 type CoreTableOptions = {
     name: string;
@@ -19,6 +21,7 @@ type CoreTableOptions = {
     showHeaders?: boolean;
     isFirstRowLoading?: boolean;
     isLastRowLoading?: boolean;
+    flashRowClass?: string;
 };
 
 const DEFAULT_OPTIONS: CoreTableOptions = {
@@ -28,17 +31,22 @@ const DEFAULT_OPTIONS: CoreTableOptions = {
     hoverRow: undefined,
     hideColumnIds: undefined,
     showHeaders: true,
+    flashRowClass: '',
 };
 
-export const CoreTable = <T,>({
+export const CoreTable = ({
     data,
     columns,
     options = DEFAULT_OPTIONS,
 }: {
-    data: Array<T>;
-    columns: ColumnDef<T, any>[];
+    data: OrderBookEntry[];
+    columns: ColumnDef<OrderBookEntry, any>[];
     options?: Partial<CoreTableOptions>;
 }) => {
+    const [changedPrices, setChangedPrices] = useState<Set<number>>(new Set());
+    const prevDataRef = useRef<Row<OrderBookEntry>[]>([]);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
     const [sorting, setSorting] = useState<SortingState>([]);
     const [activeRow, setActiveRow] = useState<string>();
     const coreTableOptions: CoreTableOptions = {
@@ -78,8 +86,45 @@ export const CoreTable = <T,>({
         getSortedRowModel: getSortedRowModel(),
     };
 
-    const table = useReactTable<T>(configuration);
+    const table = useReactTable<OrderBookEntry>(configuration);
     const rows = table.getRowModel().rows;
+
+    useEffect(() => {
+        if (!rows) return;
+
+        const updatedPrices = new Set<number>();
+
+        if (prevDataRef.current) {
+            const prevRowsMap = new Map(
+                prevDataRef.current.map(row => [row.original.value.price, row])
+            );
+
+            rows.forEach(row => {
+                const currentPrice = row.original.value.price;
+                if (currentPrice === undefined) return;
+
+                const prevRow = prevRowsMap.get(currentPrice);
+
+                if (!prevRow && currentPrice !== 0) {
+                    updatedPrices.add(currentPrice);
+                } else if (
+                    prevRow &&
+                    prevRow.original.amount !== row.original.amount
+                ) {
+                    updatedPrices.add(currentPrice);
+                }
+            });
+        }
+
+        prevDataRef.current = rows;
+
+        setChangedPrices(updatedPrices);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(
+            () => setChangedPrices(new Set()),
+            5000
+        );
+    }, [rows]);
 
     const isLoading = (rowIndex: number, dataRows: number) =>
         (options.isFirstRowLoading && rowIndex === 0) ||
@@ -150,6 +195,10 @@ export const CoreTable = <T,>({
                                             activeRow
                                         ) &&
                                         Number(row.id) === Number(activeRow),
+                                    [`${coreTableOptions.flashRowClass} animate-pulse`]:
+                                        changedPrices.has(
+                                            row.original.value.price
+                                        ),
                                 }
                             )}
                             onClick={() =>

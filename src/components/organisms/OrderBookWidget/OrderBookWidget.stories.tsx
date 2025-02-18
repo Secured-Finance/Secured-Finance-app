@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import { OrderBookEntry } from 'src/hooks/useOrderbook';
 import { CurrencySymbol, ZERO_BI } from 'src/utils';
 import { LoanValue, Maturity } from 'src/utils/entities';
-import { NewOrderBookWidget } from './NewOrderBookWidget';
+import { OrderBookWidget } from './OrderBookWidget';
 
 const maturityMar23 = new Maturity(1675252800);
 const ZERO_ENTRY = {
@@ -125,8 +125,8 @@ const ethEntries: Array<OrderBookEntry> = [
 ];
 
 export default {
-    title: 'Organism/NewOrderBookWidget',
-    component: NewOrderBookWidget,
+    title: 'Organism/OrderBookWidget',
+    component: OrderBookWidget,
     args: {
         orderbook: {
             data: {
@@ -144,10 +144,10 @@ export default {
     parameters: {
         ...RESPONSIVE_PARAMETERS,
     },
-} as Meta<typeof NewOrderBookWidget>;
+} as Meta<typeof OrderBookWidget>;
 
-const Template: StoryFn<typeof NewOrderBookWidget> = args => (
-    <NewOrderBookWidget {...args} />
+const Template: StoryFn<typeof OrderBookWidget> = args => (
+    <OrderBookWidget {...args} />
 );
 
 export const Default = Template.bind({});
