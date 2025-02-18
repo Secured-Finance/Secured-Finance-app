@@ -13,7 +13,12 @@ import { useDispatch } from 'react-redux';
 import ShowFirstIcon from 'src/assets/icons/orderbook-first.svg';
 import ShowAllIcon from 'src/assets/icons/orderbook-full.svg';
 import ShowLastIcon from 'src/assets/icons/orderbook-last.svg';
-import { DropdownSelector, Option, Spinner, Tab } from 'src/components/atoms';
+import {
+    DropdownSelector,
+    Option,
+    OrderBookIcon,
+    Spinner,
+} from 'src/components/atoms';
 import { InfoToolTip, TableHeader } from 'src/components/molecules';
 import {
     AggregationFactorType,
@@ -465,7 +470,7 @@ export const NewOrderBookWidget = ({
     };
 
     return (
-        <div className='flex h-full w-full flex-col justify-start gap-y-1 overflow-hidden border-white-10 laptop:flex-col-reverse laptop:gap-y-0 laptop:rounded-b-xl laptop:border laptop:bg-neutral-900 laptop:shadow-tab'>
+        <div className='flex h-full w-full flex-col justify-start gap-y-1 overflow-hidden laptop:flex-col-reverse laptop:gap-y-0 laptop:rounded-b-xl laptop:bg-neutral-900 laptop:shadow-tab'>
             <div className='h-full'>
                 {orderbook.isPending ? (
                     <div className='table h-full w-full'>
@@ -603,42 +608,10 @@ export const NewOrderBookWidget = ({
                         </div>
                     )}
                 </div>
-                <div className='hidden border-neutral-600 laptop:block laptop:border-b'>
-                    <div className='h-[60px]'>
-                        <Tab text='Order Book' active={true} />
-                    </div>
-                </div>
             </div>
         </div>
     );
 };
-
-const OrderBookIcon = ({
-    Icon,
-    name,
-    active,
-    onClick,
-}: {
-    Icon: React.ReactNode;
-    name: string;
-    active: boolean;
-    onClick: () => void;
-}) => (
-    <button
-        key={name}
-        aria-label={name}
-        className={clsx(
-            'rounded border-0.5 border-neutral-500 px-1.5 py-[7px] hover:bg-neutral-700',
-            {
-                'bg-neutral-700': active,
-                'bg-neutral-800': !active,
-            }
-        )}
-        onClick={onClick}
-    >
-        {Icon}
-    </button>
-);
 
 const OrderBookIconMobile = ({
     name,

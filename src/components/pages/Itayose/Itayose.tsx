@@ -412,19 +412,23 @@ export const Itayose = () => {
                         </div>
                     </div>
                     <div className='hidden laptop:block laptop:w-[272px] desktop:w-[300px]'>
-                        {!isTablet && (
-                            <NewOrderBookWidget
-                                orderbook={orderBook}
-                                currency={currency}
-                                marketPrice={estimatedOpeningUnitPrice}
-                                maxLendUnitPrice={data?.maxLendUnitPrice}
-                                minBorrowUnitPrice={data?.minBorrowUnitPrice}
-                                onFilterChange={handleFilterChange}
-                                onAggregationChange={setMultiplier}
-                                isLoadingMap={isLoadingMap}
-                                isItayose
-                            />
-                        )}
+                        <TabSelector tabDataArray={[{ text: 'Order Book' }]}>
+                            {!isTablet && (
+                                <NewOrderBookWidget
+                                    orderbook={orderBook}
+                                    currency={currency}
+                                    marketPrice={estimatedOpeningUnitPrice}
+                                    maxLendUnitPrice={data?.maxLendUnitPrice}
+                                    minBorrowUnitPrice={
+                                        data?.minBorrowUnitPrice
+                                    }
+                                    onFilterChange={handleFilterChange}
+                                    onAggregationChange={setMultiplier}
+                                    isLoadingMap={isLoadingMap}
+                                    isItayose
+                                />
+                            )}
+                        </TabSelector>
                     </div>
                     <div className='col-span-12 laptop:w-full'>
                         <HorizontalTabTable

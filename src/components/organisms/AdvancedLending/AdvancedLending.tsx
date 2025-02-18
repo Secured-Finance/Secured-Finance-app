@@ -22,6 +22,7 @@ import {
     NewOrderBookWidget,
     OrderHistoryTable,
     OrderTable,
+    RecentTradesTable,
 } from 'src/components/organisms';
 import { TableType } from 'src/components/pages';
 import { ThreeColumnsWithTopBar } from 'src/components/templates';
@@ -481,17 +482,30 @@ export const AdvancedLending = ({
                     </div>
 
                     <div className='hidden laptop:block laptop:w-[272px] desktop:w-[300px]'>
-                        {!isTablet && (
-                            <NewOrderBookWidget
-                                orderbook={orderBook}
+                        <TabSelector
+                            tabDataArray={[
+                                { text: 'Order Book' },
+                                { text: 'Recent Trades' },
+                            ]}
+                        >
+                            {!isTablet && (
+                                <NewOrderBookWidget
+                                    orderbook={orderBook}
+                                    currency={currency}
+                                    marketPrice={currentMarket?.value}
+                                    maxLendUnitPrice={data?.maxLendUnitPrice}
+                                    minBorrowUnitPrice={
+                                        data?.minBorrowUnitPrice
+                                    }
+                                    onFilterChange={handleFilterChange}
+                                    onAggregationChange={setMultiplier}
+                                />
+                            )}
+                            <RecentTradesTable
                                 currency={currency}
-                                marketPrice={currentMarket?.value}
-                                maxLendUnitPrice={data?.maxLendUnitPrice}
-                                minBorrowUnitPrice={data?.minBorrowUnitPrice}
-                                onFilterChange={handleFilterChange}
-                                onAggregationChange={setMultiplier}
+                                maturity={maturity}
                             />
-                        )}
+                        </TabSelector>
                     </div>
                     <div className='col-span-12 laptop:w-full'>
                         <HorizontalTabTable

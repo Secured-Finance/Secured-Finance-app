@@ -322,27 +322,29 @@ export function AdvancedLendingOrderCard({
     }));
     return (
         <div className='h-full rounded-b-xl border-white-10 bg-neutral-900 pb-7 laptop:border'>
-            <div className='h-11 border-b border-neutral-600 laptop:h-[60px]'>
-                <TabGroup
-                    options={orderSideOptions}
-                    selectedOption={getOrderSideText(OrderSideMap[side])}
-                    handleClick={option => {
-                        dispatch(
-                            setSide(
-                                option === 'Sell / Borrow'
-                                    ? OrderSide.BORROW
-                                    : OrderSide.LEND
-                            )
-                        );
-                        dispatch(setSourceAccount(WalletSource.METAMASK));
-                        trackButtonEvent(
-                            ButtonEvents.ORDER_SIDE,
-                            ButtonProperties.ORDER_SIDE,
-                            option
-                        );
-                    }}
-                    isFullHeight
-                />
+            <div className='border-b border-neutral-600'>
+                <div className='h-11 laptop:h-[60px]'>
+                    <TabGroup
+                        options={orderSideOptions}
+                        selectedOption={getOrderSideText(OrderSideMap[side])}
+                        handleClick={option => {
+                            dispatch(
+                                setSide(
+                                    option === 'Sell / Borrow'
+                                        ? OrderSide.BORROW
+                                        : OrderSide.LEND
+                                )
+                            );
+                            dispatch(setSourceAccount(WalletSource.METAMASK));
+                            trackButtonEvent(
+                                ButtonEvents.ORDER_SIDE,
+                                ButtonProperties.ORDER_SIDE,
+                                option
+                            );
+                        }}
+                        isFullHeight
+                    />
+                </div>
             </div>
 
             <div className='grid w-full grid-cols-12 gap-5  px-4 pb-8 pt-4 laptop:gap-0 laptop:pb-4 laptop:pt-5'>

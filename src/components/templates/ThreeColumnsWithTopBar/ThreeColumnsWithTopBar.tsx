@@ -8,7 +8,7 @@ export const ThreeColumnsWithTopBar = ({
     return (
         <div
             className='grid h-fit grid-cols-1 place-items-stretch gap-x-3
-            tablet:grid-cols-2 laptop:flex laptop:grid-cols-12 laptop:flex-wrap laptop:gap-y-4'
+            tablet:grid-cols-2 laptop:flex laptop:grid-cols-12 laptop:flex-wrap laptop:gap-y-3'
         >
             <div className='order-1 tablet:col-span-2 laptop:w-full'>
                 {topBar}

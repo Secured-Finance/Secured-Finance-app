@@ -24,6 +24,7 @@ export * from './OrderDetails';
 export * from './OrderHistoryTable';
 export * from './OrderTable';
 export * from './PlaceOrder';
+export * from './RecentTradesTable';
 export * from './RemoveOrderDialog';
 export * from './UnwindDialog';
 export * from './WalletDialog';
