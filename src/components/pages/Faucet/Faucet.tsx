@@ -105,7 +105,9 @@ export const Faucet = () => {
 
     const { data: currencies } = useCurrencies();
     const assetList = toOptions(currencies, CurrencySymbol.USDC).filter(
-        ccy => currencyMap[ccy.value].toCurrency().isToken
+        ccy =>
+            currencyMap[ccy.value].toCurrency().isToken &&
+            ccy.label !== CurrencySymbol.USDFC
     );
 
     const [ccy, setCcy] = useState<CurrencySymbol | null>(null);

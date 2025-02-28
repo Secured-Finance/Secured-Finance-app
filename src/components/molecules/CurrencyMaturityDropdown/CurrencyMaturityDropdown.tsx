@@ -31,7 +31,7 @@ import {
     removeMarketFromStore,
     writeMarketInStore,
 } from 'src/utils';
-import { LoanValue } from 'src/utils/entities';
+import { LoanValue, Maturity } from 'src/utils/entities';
 import { useAccount } from 'wagmi';
 import { CurrencyMaturityDropdownProps, FilteredOption } from './types';
 
@@ -136,8 +136,12 @@ export const CurrencyMaturityDropdown = ({
 
     const filteredOptions = useMemo(() => {
         let options = currencyList.flatMap(currency => {
-            return maturityList
-                .map(maturity => {
+            return Object.values(lendingMarkets[currency.value])
+                .map(lendingMarket => {
+                    const maturity = {
+                        label: lendingMarket.name,
+                        value: new Maturity(lendingMarket.maturity),
+                    };
                     const data =
                         lendingMarkets[currency.value]?.[+maturity.value];
 
@@ -207,7 +211,6 @@ export const CurrencyMaturityDropdown = ({
     }, [
         currencyList,
         sortOptions,
-        maturityList,
         lendingMarkets,
         currentCurrency,
         isItayose,

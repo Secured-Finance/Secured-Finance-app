@@ -1,6 +1,8 @@
 import { reset, track } from '@amplitude/analytics-browser';
 import { SecuredFinanceClient } from '@secured-finance/sf-client';
 import { useQueryClient } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { createContext, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { QUERIES_TO_INVALIDATE } from 'src/hooks';
@@ -11,6 +13,7 @@ import {
     updateIsChainIdDetected,
     updateLatestBlock,
 } from 'src/store/blockchain';
+import { setWalletDialogOpen } from 'src/store/interactions';
 import { RootState } from 'src/store/types';
 import {
     getSupportedChainIds,
@@ -53,6 +56,8 @@ export const Context = createContext<SFContext>({
 const SecuredFinanceProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
+    const searchParams = useSearchParams();
+    const router = useRouter();
     const { address, isConnected } = useAccount();
     const { chain } = useNetwork();
     const chainId = useSelector((state: RootState) => state.blockchain.chainId);
@@ -231,6 +236,36 @@ const SecuredFinanceProvider: React.FC<{ children: React.ReactNode }> = ({
         queryClient,
         securedFinance,
     ]);
+
+    useEffect(() => {
+        const selectedChainId = Number(searchParams.get('chain_id'));
+
+        if (isNaN(selectedChainId)) return;
+
+        if (selectedChainId === chainId) {
+            const newSearchParams = new URLSearchParams(
+                searchParams.toString()
+            );
+            newSearchParams.delete('chain_id');
+
+            router.push(
+                Array.from(newSearchParams.keys()).length === 0
+                    ? ''
+                    : `?${newSearchParams.toString()}`
+            );
+        } else if (getSupportedChainIds().includes(selectedChainId)) {
+            const provider = readWalletFromStore();
+            const connector = connectors.find(
+                connect => connect.name === provider
+            );
+
+            if (connector) {
+                connector.switchChain?.(selectedChainId);
+            } else {
+                dispatch(setWalletDialogOpen(true));
+            }
+        }
+    }, [searchParams, chainId, connectors, router, dispatch]);
 
     return (
         <Context.Provider value={{ securedFinance }}>

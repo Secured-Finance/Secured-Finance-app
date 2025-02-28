@@ -17,6 +17,6 @@ describe('useBalances', () => {
         const expected = createCurrencyMap<bigint>(ZERO_BI);
 
         expect(result.current).toEqual(expected);
-        expect(Object.values(result.current).length).toEqual(12);
+        expect(Object.values(result.current).length).toEqual(13);
     });
 });

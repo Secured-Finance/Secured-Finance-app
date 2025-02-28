@@ -1,4 +1,5 @@
 import { track } from '@amplitude/analytics-browser';
+import { useSearchParams } from 'next/navigation';
 import { useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MetaMaskIcon from 'src/assets/img/metamask-fox.svg';
@@ -35,6 +36,7 @@ function hasMetaMask() {
 
 export const WalletDialog = () => {
     const chainId = useSelector((state: RootState) => state.blockchain.chainId);
+    const searchParams = useSearchParams();
 
     const chainName = getSupportedNetworks().find(n => n.id === chainId)?.name;
 
@@ -111,18 +113,23 @@ export const WalletDialog = () => {
 
             if (!account) {
                 const supportedChainId = getSupportedChainIds();
-                if (
-                    provider === 'MetaMask' &&
-                    hasMetaMask() &&
-                    !supportedChainId.includes(await connector.getChainId())
-                ) {
-                    await connector.switchChain?.(supportedChainId[0]);
-                }
+                const selectedChainId = Number(searchParams.get('chain_id'));
                 connect({ connector: connector });
+
+                if (provider === 'MetaMask' && hasMetaMask()) {
+                    if (supportedChainId.includes(selectedChainId)) {
+                        await connector.switchChain?.(selectedChainId);
+                    } else if (
+                        !supportedChainId.includes(await connector.getChainId())
+                    ) {
+                        await connector.switchChain?.(supportedChainId[0]);
+                    }
+                }
+
                 writeWalletInStore(provider);
             }
         },
-        [connect, connectors]
+        [connect, connectors, searchParams]
     );
 
     const connectWallet = useCallback(
